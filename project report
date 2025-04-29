@@ -1,0 +1,46 @@
+1. Issue with Comments Inside JSX Attributes:
+.Problem Identified: TypeScript and ESLint errors were caused by placing comments  inside JSX attribute values. 
+JSX does not allow comments directly within attributes.
+Error Messages: The errors indicated that the TypeScript compiler expected a ... and flagged the comment syntax within the JSX attributes. Specifically,
+ it was pointing to lines where the title attributes contained comments.
+
+ ERROR(TypeScript)  '...' expected.
+FILE  C:/care/care_fe/src/components/Auth/AuthHero.tsx:25:74
+ERROR(TypeScript)  '...' expected.
+FILE  C:/care/care_fe/src/components/Auth/AuthHero.tsx:41:90
+ERROR(TypeScript)  '...' expected.
+FILE  C:/care/care_fe/src/components/Auth/AuthHero.tsx:78:96
+ERROR(TypeScript)  '...' expected.
+FILE  C:/care/care_fe/src/components/Auth/AuthHero.tsx:87:90
+
+
+2. Fix Applied:
+Removal of Comments Inside JSX Attributes:
+
+The comments were moved outside of the JSX attribute values and placed just before the JSX element. This ensures that comments do not interfere with JSX parsing and resolve TypeScript errors.
+
+3. Code Modifications:
+The title attributes, such as title="State Logo", were preserved for accessibility purposes, but the comments were removed from inside the attribute and instead placed as separate lines above the JSX elements.
+
+<img
+  src={logo}
+  className="h-16 rounded-lg py-3"
+  alt="state logo"
+  title="State Logo" {/* Added title for accessibility */}
+/>
+
+Was changed to:
+
+tsx
+Copy code
+{/* Added title for accessibility */}
+<img
+  src={logo}
+  className="h-16 rounded-lg py-3"
+  alt="state logo"
+  title="State Logo"
+/>
+
+Benefits of the Change:
+Resolved TypeScript and ESLint Errors: The errors were cleared by adhering to proper JSX syntax.
+Moving the comments above the JSX elements improves readability without interfering with the JSX structure.
